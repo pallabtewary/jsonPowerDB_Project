@@ -34,6 +34,9 @@ a simple Home page where one can get 4 buttons, where a user can Register data ,
 
 ![Screenshot 2021-09-19 141830](https://user-images.githubusercontent.com/90823578/133921985-93357b30-f7b5-4f0e-babe-d5cc539ad102.png)
 
+![show_rem](https://user-images.githubusercontent.com/90823578/133922612-4a103901-8b36-46da-ac70-55220d291bfd.png)
+
+
 
 ![Screenshot 2021-09-19 142002](https://user-images.githubusercontent.com/90823578/133921991-27cc1c9e-b671-467b-b306-9746ec6d4e7a.png)
 
