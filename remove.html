@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>Login2Xplore - Show Data</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+<!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/style.css" rel="stylesheet">
+
+<script
+src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script
+src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+</head>
+<body>
+<div class="container">
+ 
+     <div class="col-sm-9 col-md-7 col-lg-5  mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+    
+<div class="section-title">
+          <h2>Remove Data</h2>
+          <p style="font-size:15px;"> Enter Employee Data and the Details Will be shown in the Popup </p>
+        </div>
+<form id="empForm" method= "post">
+<div class="form-group">
+
+    
+<span><label for="recordNum" style="font-size:20px;">Record Number:</label> <label id="empIdMsg">
+</label></span>
+<input style="font-size:14px;" type="text" class="form-control" name="recordNum" id="recordNum"
+placeholder="Enter Record Number" required>
+</div>
+    
+<input style="font-size:15px;" type="button" class="btn btn-primary" id="empSave" value="Remove"
+onclick="removeData();">
+</form>
+    <br><a style="font-size:12px;" href="index.html"> Home </a>
+</div>
+        </div>
+     </div>
+       
+    
+    </div>
+<script>
+$("#recordNum").focus();
+function validateAndGetFormData() {
+var recordNum = $("#recordNum").val();
+if (recordNum === "") {
+alert("Record Number Required Value");
+$("#recordNum").focus();
+return "";
+}
+            
+var jsonStrObj = {
+recordNum: recordNum,
+
+};
+return JSON.stringify(jsonStrObj);
+}
+
+function resetForm() {
+$("#recordNum").val("")
+$("#empId").focus();
+}
+function removeData() {
+ var recordNum = parseInt(document.getElementById("recordNum").value);
+var jsonStr = validateAndGetFormData();
+if (jsonStr === "") {
+return;
+}
+var removeReq = createREMOVERecordRequest("90936129|-31948849765544324|90944194",
+ "EMPLOYEE", "EMP-REL", recordNum);
+alert(removeReq);
+jQuery.ajaxSetup({async: false});
+var resultObj = executeCommandAtGivenBaseUrl(removeReq,
+"http://api.login2explore.com:5577", "/api/iml");
+alert(JSON.stringify(resultObj));
+jQuery.ajaxSetup({async: true});
+resetForm();
+}
+</script>
+</body>
+</html>
